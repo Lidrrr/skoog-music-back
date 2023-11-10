@@ -1,5 +1,4 @@
 const {Album} = require('../Schema/album')
-const jwt = require("jsonwebtoken")
 
 exports.renderPage = async (req, res) => {
     const albums = await Album.find()
@@ -17,14 +16,14 @@ exports.comment = async (req, res) => {
     try {
         const albumId = req.params.albumId
         const comments = req.body.comments
-        const user = req.user.name
+        const user = req.body.userId
         const album = await Album.findById(albumId)
 
         if (!album) {
             return res.status(404).json({ message: 'Album not found' })
         }
 
-        album.comments.push({ user: user, comment: comments })
+        album.comments = [content,user]
 
         await album.save()
 

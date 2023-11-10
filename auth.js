@@ -10,11 +10,10 @@ module.exports = (req, res, next) => {
 	// verify token
 	jwt.verify(token, 'IT-Project-022', (err, validToken) => {
 		if (err) {
-			//console.log(token)
+			console.log(token)
 			return res.status(400).send({ message: "invalid token" })
 		} else {
 			req.user = validToken
-			//console.log(validToken)
 			next()
 		}
 	})
