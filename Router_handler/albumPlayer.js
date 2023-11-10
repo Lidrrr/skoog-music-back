@@ -24,7 +24,7 @@ exports.comment = async (req, res) => {
             return res.status(404).json({ message: 'Album not found' })
         }
 
-        album.comments = [user, comments]
+        album.comments.push({ user: user, comment: comments })
 
         await album.save()
 
